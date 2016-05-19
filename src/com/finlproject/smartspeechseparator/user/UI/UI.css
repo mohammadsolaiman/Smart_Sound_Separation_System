@@ -1,0 +1,17 @@
+@CHARSET "ISO-8859-1";
+
+.sound_label:hover{
+	-fx-background-color: #808040;
+	-fx-background-radius:5;
+}
+
+.sound_label:active {
+	-fx-background-color: #408080;
+		-fx-background-radius:10;
+	
+}
+
+.ground{
+		
+	
+}

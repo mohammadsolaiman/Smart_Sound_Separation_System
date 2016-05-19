@@ -1,0 +1,490 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.chart.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.text.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="535.0" prefWidth="831.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.finlproject.smartspeechseparator.user.UI.UIController">
+	<children>
+      <VBox AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <children>
+      		<TabPane prefHeight="513.0" prefWidth="557.0" tabClosingPolicy="UNAVAILABLE" VBox.vgrow="ALWAYS">
+      			<tabs>
+      				<Tab text="   Separate   ">
+      					<content>
+      						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="ground">
+      							<children>
+      								<SplitPane dividerPositions="0.6630630630630631" prefHeight="485.0" prefWidth="557.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0">
+      									<items>
+      										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="ground">
+                                       <children>
+                                          <VBox layoutX="10.0" layoutY="72.0" AnchorPane.bottomAnchor="50.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                                             <children>
+                                                <HBox layoutX="14.0" layoutY="72.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                                                   <children>
+                                                      <TextField fx:id="mixed_path_TF" layoutX="66.0" layoutY="74.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="340.0" promptText="pleas choose the mixed wav file.." />
+                                                      <Region prefHeight="25.0" prefWidth="88.0" HBox.hgrow="ALWAYS" />
+                                                      <Button mnemonicParsing="false" onAction="#BrowseForMixed" prefHeight="25.0" prefWidth="85.0" text="Browse" />
+                                                   </children>
+                                                </HBox>
+                                                <Region prefHeight="20.0" prefWidth="301.0" />
+                                                <Label text="Spectrogram" />
+                                                <Separator prefWidth="200.0" />
+                                                <VBox>
+                                                   <children>
+                                                      <HBox VBox.vgrow="ALWAYS">
+                                                         <children>
+                                                            <VBox prefHeight="127.0" prefWidth="272.0" HBox.hgrow="NEVER">
+                                                               <children>
+                                                                  <Label onMouseClicked="#sepPlayMixSound" styleClass="sound_label" text="MIX" textFill="#1465e8" underline="true">
+                                                                     <VBox.margin>
+                                                                        <Insets left="5.0" right="5.0" top="5.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font name="System Bold Italic" size="13.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <ImageView fx:id="sep_Mix_spectroImgView" fitHeight="100.0" fitWidth="500.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#onImgClickEvent_Mix">
+                                                                     <image>
+                                                                        <Image url="@../../../../../../../../mix.jpg" />
+                                                                     </image>
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="5.0" left="5.0" right="5.0" />
+                                                                     </VBox.margin>
+                                                                  </ImageView>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                         <VBox.margin>
+                                                            <Insets />
+                                                         </VBox.margin>
+                                                      </HBox>
+                                                      <HBox layoutX="10.0" layoutY="10.0">
+                                                         <children>
+                                                            <VBox HBox.hgrow="NEVER">
+                                                               <children>
+                                                                  <ImageView fx:id="sep_speech_spectroImgView" fitHeight="100.0" fitWidth="245.0" layoutX="10.0" layoutY="10.0" onMouseClicked="#onImgClickEvent_Speech">
+                                                                     <image>
+                                                                        <Image url="@../../../../../../../../mix.jpg" />
+                                                                     </image>
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                                     </VBox.margin>
+                                                                  </ImageView>
+                                                                  <Label onMouseClicked="#sepPlaySpeechSound" styleClass="sound_label" text="Speech" textFill="#1465e8" underline="true">
+                                                                     <VBox.margin>
+                                                                        <Insets left="110.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font name="System Bold Italic" size="13.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                            <VBox layoutX="10.0" layoutY="10.0" HBox.hgrow="NEVER">
+                                                               <children>
+                                                                  <ImageView fx:id="sep_noise_spectroImgView" fitHeight="100.0" fitWidth="245.0" onMouseClicked="#onImgClickEvent_Noise">
+                                                                     <image>
+                                                                        <Image url="@../../../../../../../../mix.jpg" />
+                                                                     </image>
+                                                                     <VBox.margin>
+                                                                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                                     </VBox.margin>
+                                                                  </ImageView>
+                                                                  <Label onMouseClicked="#sepPlayNoiseSound" styleClass="sound_label" text="Noise" textFill="#1465e8" underline="true">
+                                                                     <VBox.margin>
+                                                                        <Insets left="110.0" />
+                                                                     </VBox.margin>
+                                                                     <font>
+                                                                        <Font name="System Bold Italic" size="13.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                               </children>
+                                                            </VBox>
+                                                         </children>
+                                                      </HBox>
+                                                   </children>
+                                                </VBox>
+                                                <Separator prefWidth="200.0" />
+                                                <Region prefHeight="28.0" prefWidth="272.0" VBox.vgrow="NEVER" />
+                                                <HBox>
+                                                   <children>
+                                                      <Region prefHeight="25.0" prefWidth="166.0" HBox.hgrow="ALWAYS" />
+                                                      <Button mnemonicParsing="false" onAction="#separateAction" prefHeight="45.0" prefWidth="195.0" text="Separate">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" top="10.0" />
+                                                         </HBox.margin>
+                                                         <font>
+                                                            <Font name="System Bold" size="13.0" />
+                                                         </font></Button>
+                                                      <Region layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="166.0" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="299.0" prefHeight="28.0" prefWidth="272.0" />
+                                                <HBox VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <ProgressBar maxWidth="1.7976931348623157E308" minWidth="-Infinity" progress="0.0" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+      										<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="ground">
+      											<children>
+      												<Label layoutY="14.0" prefHeight="25.0" prefWidth="157.0" text="   Settings" textAlignment="CENTER" underline="true">
+      													<font>
+      														<Font name="Arial Narrow Bold" size="21.0" />
+      													</font>
+      												</Label>
+      												<VBox layoutX="14.0" layoutY="70.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="70.0">
+      													<children>
+      														<ChoiceBox fx:id="sep_choose_mode" layoutX="16.0" layoutY="70.0" prefHeight="25.0" prefWidth="204.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0">
+															
+														</ChoiceBox>
+                                                <Region prefHeight="20.0" prefWidth="201.0" />
+                                                <ChoiceBox fx:id="sep_choose_stft_wlen" layoutX="10.0" layoutY="10.0" prefHeight="25.0" prefWidth="204.0" />
+                                                <Region layoutX="10.0" layoutY="35.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox>
+                                                   <children>
+                                                      <TextField fx:id="sep_unsupervizedstft_wlen" prefHeight="25.0" prefWidth="156.0" promptText="STFT Window (UNSUPERVISED)" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="150.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="speech components">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="sep_K_sTF" prefHeight="25.0" prefWidth="106.0" text="4" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="80.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox layoutX="10.0" layoutY="100.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="noise    components">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="sep_K_nTF" prefHeight="25.0" prefWidth="106.0" text="4" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="125.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox layoutX="10.0" layoutY="145.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="Iterations #                       ">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="sep_niterTF" prefHeight="25.0" prefWidth="106.0" text="500" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="170.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox layoutX="10.0" layoutY="190.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="Regulization param">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="sep_MuTF" prefHeight="25.0" prefWidth="106.0" promptText="Mu" text="0.001" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="215.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox layoutX="10.0" layoutY="235.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="40.0" text="Filter">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region prefHeight="25.0" prefWidth="41.0" HBox.hgrow="ALWAYS" />
+                                                      <ChoiceBox fx:id="sep_choose_filter" prefHeight="25.0" prefWidth="95.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="260.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox layoutX="10.0" layoutY="280.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="Filter Sigma">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="sep_sigmaFilterTF" prefHeight="25.0" prefWidth="106.0" promptText="Mu" text="1" />
+                                                   </children>
+                                                </HBox>
+      													</children>
+      												</VBox>
+      											</children>
+      										</AnchorPane>
+      									</items>
+      								</SplitPane>
+      							</children>
+      						</AnchorPane>
+      					</content>
+      				</Tab>
+                  <Tab text="     Learn     ">
+                     <content>
+                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="ground">
+                           <children>
+                              <SplitPane dividerPositions="0.6072072072072072" prefHeight="485.0" prefWidth="557.0" AnchorPane.bottomAnchor="-0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-0.0">
+                                 <items>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="ground">
+                                       <children>
+                                          <VBox layoutX="10.0" layoutY="72.0" AnchorPane.bottomAnchor="5.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+                                             <children>
+                                                <HBox layoutX="14.0" layoutY="72.0" AnchorPane.leftAnchor="10.0" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="72.0">
+                                                   <children>
+                                                      <TextField fx:id="learnDirTF" layoutX="66.0" layoutY="74.0" maxWidth="1.7976931348623157E308" prefHeight="25.0" prefWidth="340.0" promptText="select wav files to learn the system.." />
+                                                      <Region prefHeight="25.0" prefWidth="88.0" HBox.hgrow="ALWAYS" />
+                                                      <Button mnemonicParsing="false" onAction="#Browse" prefHeight="25.0" prefWidth="85.0" text="Browse" />
+                                                   </children>
+                                                </HBox>
+                                                <Region prefHeight="20.0" prefWidth="301.0" />
+                                                <Label text="Content: " />
+                                                <Separator prefWidth="200.0" />
+                                                <HBox VBox.vgrow="ALWAYS">
+                                                   <children>
+                                                      <ListView fx:id="selectedFilesList" prefHeight="254.0" prefWidth="314.0" HBox.hgrow="ALWAYS" />
+                                                   </children>
+                                                </HBox>
+                                                <Separator prefWidth="200.0" />
+                                                <Region VBox.vgrow="ALWAYS">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </Region>
+                                                <HBox>
+                                                   <children>
+                                                      <Button mnemonicParsing="false" onAction="#PlaySound" text="Play Sound">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#onLearnDrowSpectrogram" text="Spectrogram">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button layoutX="70.0" layoutY="15.0" mnemonicParsing="false" onAction="#deleteSelected" text="Delete">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Button layoutX="189.0" layoutY="15.0" mnemonicParsing="false" onAction="#learn" text="Learn">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <Button mnemonicParsing="false" text="   Learn All  ">
+                                                         <HBox.margin>
+                                                            <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                                         </HBox.margin>
+                                                      </Button>
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="299.0" prefHeight="28.0" prefWidth="272.0" />
+                                                <HBox VBox.vgrow="NEVER">
+                                                   <children>
+                                                      <ProgressBar maxWidth="1.7976931348623157E308" minWidth="-Infinity" progress="0.0" HBox.hgrow="ALWAYS">
+                                                         <HBox.margin>
+                                                            <Insets top="20.0" />
+                                                         </HBox.margin>
+                                                      </ProgressBar>
+                                                   </children>
+                                                </HBox>
+                                                <TextArea fx:id="learn_logTA" VBox.vgrow="ALWAYS">
+                                                   <VBox.margin>
+                                                      <Insets top="5.0" />
+                                                   </VBox.margin>
+                                                </TextArea>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0" styleClass="ground">
+                                       <children>
+                                          <Label layoutY="14.0" prefHeight="25.0" prefWidth="157.0" text="   Settings" textAlignment="CENTER" underline="true">
+                                             <font>
+                                                <Font name="Arial Narrow Bold" size="21.0" />
+                                             </font>
+                                          </Label>
+                                          <VBox layoutX="14.0" layoutY="70.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="14.0" AnchorPane.topAnchor="70.0">
+                                             <children>
+                                                <HBox layoutX="10.0" layoutY="50.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="102.0" text="Sound Type">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <ChoiceBox fx:id="learn_soundType_chooesBox" prefWidth="150.0" />
+                                                   </children>
+                                                </HBox>
+                                                <Region prefHeight="20.0" prefWidth="201.0" />
+                                                <Region layoutX="10.0" layoutY="35.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="Components #">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="learn_K" prefHeight="25.0" prefWidth="106.0" text="2" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="80.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox layoutX="10.0" layoutY="100.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="STFT Window Length">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="learn_stft_wlen_TF" prefHeight="25.0" prefWidth="106.0" text="2048" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="125.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox layoutX="10.0" layoutY="145.0">
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="Iterations #                       ">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="learn_num_iter" prefHeight="25.0" prefWidth="106.0" text="200" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="145.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox>
+                                                   <children>
+                                                      <Label prefHeight="17.0" prefWidth="201.0" text="Regulization param">
+                                                         <font>
+                                                            <Font name="System Bold" size="12.0" />
+                                                         </font>
+                                                      </Label>
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="learn_MU_TF" prefHeight="25.0" prefWidth="106.0" promptText="Mu" text="0.001" />
+                                                   </children>
+                                                </HBox>
+                                                <Region layoutX="10.0" layoutY="190.0" prefHeight="20.0" prefWidth="201.0" />
+                                                <HBox layoutX="10.0" layoutY="210.0">
+                                                   <children>
+                                                      <CheckBox fx:id="learn_takeSample_CB" mnemonicParsing="false" prefHeight="17.0" prefWidth="132.0" text="Take Sample" />
+                                                      <Region HBox.hgrow="ALWAYS" />
+                                                      <TextField fx:id="learn_sampleLength_TF" prefHeight="25.0" prefWidth="106.0" promptText="SampleLength" text="200000" />
+                                                   </children>
+                                                </HBox>
+                                             </children>
+                                          </VBox>
+                                       </children>
+                                    </AnchorPane>
+                                 </items>
+                              </SplitPane>
+                           </children>
+                        </AnchorPane>
+                     </content>
+                  </Tab>
+      				<Tab text="   Dataset   ">
+      					<content>
+      						<AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" styleClass="ground">
+                           <children>
+                              <VBox layoutX="14.0" layoutY="242.0" styleClass="ground" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                 <children>
+                                    <HBox>
+                                       <children>
+                                          <Label layoutX="14.0" layoutY="14.0" text="Select" textAlignment="CENTER" textOverrun="CENTER_ELLIPSIS">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="9.0" />
+                                             </HBox.margin>
+                                             <font>
+                                                <Font name="System Bold" size="13.0" />
+                                             </font>
+                                          </Label>
+                                          <ChoiceBox layoutX="70.0" layoutY="10.0" prefWidth="150.0">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ChoiceBox>
+                                          <ChoiceBox layoutX="240.0" layoutY="10.0" prefWidth="150.0">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </ChoiceBox>
+                                          <Region HBox.hgrow="ALWAYS" />
+                                          <Button mnemonicParsing="false" onAction="#clearAllDB" text="Clear Dataset">
+                                             <HBox.margin>
+                                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                             </HBox.margin>
+                                          </Button>
+                                       </children>
+                                    </HBox>
+                                    <TableView layoutX="14.0" layoutY="242.0">
+                                      <columns>
+                                        <TableColumn prefWidth="75.0" text="NAME" />
+                                        <TableColumn prefWidth="143.0" text="STFT Window Length" />
+                                          <TableColumn prefWidth="143.0" text="Type" />
+                                      </columns>
+                                    </TableView>
+                                    <HBox>
+                                       <children>
+                                          <Label text="Warning : By Clearing the dataset you will lose all data" textFill="#d34343">
+                                             <font>
+                                                <Font name="System Italic" size="14.0" />
+                                             </font>
+                                             <VBox.margin>
+                                                <Insets left="10.0" top="20.0" />
+                                             </VBox.margin>
+                                          </Label>
+                                       </children>
+                                    </HBox>
+                                 </children>
+                              </VBox>
+                           </children>
+                        </AnchorPane>
+      					</content>
+      				</Tab>
+      			</tabs>
+      		</TabPane>
+            <Separator prefWidth="200.0" />
+            <HBox VBox.vgrow="NEVER">
+               <children>
+                  <Pane VBox.vgrow="NEVER">
+                     <children>
+                        <HBox>
+                           <children>
+                              <Label text="  Status:  " />
+                              <Label fx:id="statusLable" text="     " />
+                           </children>
+                        </HBox>
+                     </children>
+                  </Pane>
+               </children>
+               <VBox.margin>
+                  <Insets bottom="2.0" />
+               </VBox.margin>
+            </HBox>
+         </children>
+      </VBox>
+	</children>
+</AnchorPane>
