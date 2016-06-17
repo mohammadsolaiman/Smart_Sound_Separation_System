@@ -1,20 +1,16 @@
 package com.finlproject.smartspeechseparator.user.UI;
 
-import java.awt.Checkbox;
 import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.net.URL;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
-import java.util.Scanner;
 
 import javax.swing.JFrame;
 import javax.swing.JPanel;
@@ -29,7 +25,6 @@ import com.finalproject.smartspeechseparator.audioprocessing.WavFileException;
 import com.finalproject.smartspeechseparator.database.Basis_row;
 import com.finalproject.smartspeechseparator.database.DB_handler;
 import com.finalproject.smartspeechseparator.database.SOUNDTYPE;
-import com.finalproject.smartspeechseparator.debug.DebugLogger;
 import com.finalproject.smartspeechseparator.general.Cell;
 import com.finalproject.smartspeechseparator.general.Separate_output_struct;
 import com.finalproject.smartspeechseparator.transform.Analyzer;
@@ -48,9 +43,6 @@ import javafx.collections.ObservableList;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.canvas.Canvas;
-import javafx.scene.chart.StackedAreaChart;
-import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
@@ -60,7 +52,6 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.Pane;
 import javafx.stage.FileChooser;
 import javafx.stage.FileChooser.ExtensionFilter;
 import javafx.stage.Stage;
@@ -284,7 +275,7 @@ public class UIController implements Initializable {
 	@FXML
 	private TextField sep_sigmaFilterTF;
 
-	private String mix_path, speech_outPath, noise_outPath;
+	private String  speech_outPath, noise_outPath;
 	private boolean is_sepEND = false;
 	public void separateAction() {
 		is_sepEND = false;
@@ -318,8 +309,8 @@ public class UIController implements Initializable {
 		}
 		
 		String mode = sep_choose_mode.getSelectionModel().getSelectedItem();
-		int K_speech = Integer.parseInt(sep_K_sTF.getText());
-		int K_noise = Integer.parseInt(sep_K_nTF.getText());
+		//int K_speech = Integer.parseInt(sep_K_sTF.getText());
+		//int K_noise = Integer.parseInt(sep_K_nTF.getText());
 		int niter = Integer.parseInt(sep_niterTF.getText());
 		double Mu = Double.parseDouble(sep_MuTF.getText());
 		int stft_wlen = Integer.parseInt(sep_choose_stft_wlen.getSelectionModel().getSelectedItem());
@@ -367,7 +358,7 @@ public class UIController implements Initializable {
 					B_n = DoubleMatrix.concatHorizontally(B_n, tool.String2DoubleMatrix(Li_B_n.get(i).getData().toString()));
 				}
 				
-				int F = B_s.getRows(), T = V_abs.getColumns(), K_s = B_s.getColumns(), K_n = B_n.getColumns() ;
+				int  T = V_abs.getColumns(), K_s = B_s.getColumns(), K_n = B_n.getColumns() ;
 				
 				//Initialize W
 				W =_init.initialize_W(K_s+K_n, T);
@@ -741,7 +732,7 @@ public class UIController implements Initializable {
 	public void BrowseForMixed() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Choose Files");
-		fileChooser.setInitialDirectory(new File("C:\\Users\\Mohammad\\EclipsJEEWorkSpace"));
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("WAV", "*.wav"));
 		File file = fileChooser.showOpenDialog(this.stage);
 		if (file != null) {
@@ -796,7 +787,7 @@ public class UIController implements Initializable {
 	public void Browse() {
 		FileChooser fileChooser = new FileChooser();
 		fileChooser.setTitle("Choose Files");
-		fileChooser.setInitialDirectory(new File("C:\\Users\\Mohammad\\EclipsJEEWorkSpace"));
+		fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
 		fileChooser.getExtensionFilters().add(new ExtensionFilter("WAV", "*.wav"));
 		List<File> files = fileChooser.showOpenMultipleDialog(this.stage);
 		if (files != null) {
